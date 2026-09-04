@@ -8,4 +8,4 @@ GitHub'da `Settings → Pages → Source: Deploy from a branch → main / docs` 
 
 Özel düzenleme dosyası bu depoda bulunmaz. Site içeriğini değiştirmek için yalnızca bilgisayarınızda bulunan özel yönetim paketindeki `private/davetiye-bilgileri.private.json` dosyası kullanılır.
 
-> Sitede ziyaretçiye gösterilen isim, tarih, saat ve konum gibi bilgiler doğası gereği sayfanın içinde görülebilir. Ancak bunların düzenlendiği özel JSON dosyası bu public depoya yüklenmez.
+> Sitede ziyaretçiye gösterilen çift ve aile isimleri, telefon, tarih, saat ve konum bilgileri doğası gereği sayfanın içinde görülebilir. Ancak bunların düzenlendiği özel JSON dosyası bu public depoya yüklenmez.
