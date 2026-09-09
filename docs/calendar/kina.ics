@@ -13,7 +13,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:kina-2026-10-08@edanur-serkan.invitation
-DTSTAMP:20260908T204956Z
+DTSTAMP:20260909T195116Z
 DTSTART;TZID=Europe/Istanbul:20261008T190000
 SUMMARY:Edanur & Serkan · Kına
 LOCATION:Merry Davet\, Erenler Mahallesi\, 1274. Sokak\, A. Bağışoğlu 

@@ -1,19 +1,13 @@
-# Edanur & Serkan — Web Davetiyesi v10
+# Edanur & Serkan — Web Davetiyesi
 
-GitHub Pages için hazırlanmış yayın paketi.
+Bu depo yalnızca GitHub Pages'ta yayınlanması gereken hazırlanmış site dosyalarını içerir.
 
-## Bu sürümde
-- Açılış ekranı tam ekran video + `Edanur & Serkan` + `10.10.2026` olarak yeniden tasarlandı.
-- Video masaüstü ve telefonda ekranı daha güçlü dolduracak şekilde `cover` kullanıyor.
-- Gelin alma / gün programı bölümü tamamen kaldırıldı.
-- Kına ve düğün için iki ayrı canlı geri sayım eklendi.
-- Mevcut yeşil–krem–altın renk dili korunup daha fantastik 3D hissi veren botanik katmanlar, gölgeler ve uçuşan yaprak/petal efektleri eklendi.
-- Kına ve düğün bilgileri, aileler, yol tarifi, takvime ekle ve iletişim bölümleri aşağı kaydırıldığında görünür.
-- Arka plan müziği `docs/audio/muzik.mp3` dosyasından çalar. Tarayıcı otomatik sesi engellerse ilk dokunma/tıklama/kaydırmada başlar; sekme arka plana geçince durur.
+- `docs/`: Ziyaretçilere sunulan web sitesi
 
-## Yayınlama
-GitHub deposuna bu paketin içeriğini yükleyin ve:
+GitHub'da `Settings → Pages → Source: Deploy from a branch → main / docs` seçildiğinde site yayınlanır. Noktayla başlayan gizli bir klasör yüklemek gerekmez.
 
-`Settings → Pages → Deploy from a branch → main → /docs`
+Özel düzenleme dosyası bu depoda bulunmaz. Site içeriğini değiştirmek için yalnızca bilgisayarınızda bulunan özel yönetim paketindeki `private/davetiye-bilgileri.private.json` dosyası kullanılır.
 
-seçin.
+> Sitede ziyaretçiye gösterilen çift ve aile isimleri, telefon, tarih, saat ve konum bilgileri doğası gereği sayfanın içinde görülebilir. Ancak bunların düzenlendiği özel JSON dosyası bu public depoya yüklenmez.
+
+Bu sürüm: ekranı kaplayan açılış videosu, isimler ve 10.10.2026, iki ayrı sayaç ve 3D çiçekler. Gelin alma planı çıkarıldı. Love Story kaydı sağlanmadığı için müzik şu an sessizdir; özel yönetim paketindeki MUZIK_DEGISTIR.bat ile MP3 seçilip çıktı yeniden hazırlanabilir.

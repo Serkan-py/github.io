@@ -13,7 +13,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:dugun-2026-10-10@edanur-serkan.invitation
-DTSTAMP:20260908T204956Z
+DTSTAMP:20260909T195116Z
 DTSTART;TZID=Europe/Istanbul:20261010T190000
 SUMMARY:Edanur & Serkan · Düğün
 LOCATION:Asrı Rüya Düğün Salonu\, Yunuseli Mahallesi Yunuseli Bulvarı
