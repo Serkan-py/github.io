@@ -2,7 +2,12 @@
   const root = document.documentElement;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  // Reveal content gently as it enters the viewport.
+  // Hero yazısı ilk kareyi rahat bırakır; sonra yumuşakça görünür.
+  const heroCopy = document.querySelector('.hero-copy');
+  if (reduced.matches) heroCopy?.classList.add('is-revealed');
+  else window.setTimeout(() => heroCopy?.classList.add('is-revealed'), 1900);
+
+  // İçerik görünürlük animasyonları.
   const revealItems = document.querySelectorAll('.reveal');
   if (reduced.matches || !('IntersectionObserver' in window)) {
     revealItems.forEach(el => el.classList.add('is-visible'));
@@ -18,7 +23,7 @@
     revealItems.forEach(el => observer.observe(el));
   }
 
-  // Restrained hero depth: only a few pixels on desktop and low scroll depth on mobile.
+  // Çok düşük seviyeli derinlik/parallax.
   if (!reduced.matches) {
     let pointerFrame = 0;
     window.addEventListener('pointermove', event => {
@@ -32,27 +37,25 @@
       });
     }, { passive: true });
 
-    let scrollFrame = 0;
-    const updateScroll = () => {
-      if (scrollFrame) return;
-      scrollFrame = requestAnimationFrame(() => {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
         const hero = document.querySelector('.hero-stage');
         if (hero) {
           const progress = Math.max(0, Math.min(1, window.scrollY / Math.max(hero.offsetHeight, 1)));
           root.style.setProperty('--hero-scroll', progress.toFixed(3));
         }
-        scrollFrame = 0;
+        ticking = false;
       });
-    };
-    window.addEventListener('scroll', updateScroll, { passive: true });
-    updateScroll();
+    }, { passive: true });
   }
 
-  // Hero video: autoplay muted, pause on tab switch, keep a static end frame.
+  // Video: sessiz otomatik oynatma, sekme değişince durma, bitiş karesi.
   const video = document.querySelector('.couple-video');
   const scene = document.querySelector('.meeting-scene');
   const endPoster = document.querySelector('.scene-end-poster');
-  const errorBox = document.querySelector('.scene-error');
   const toggle = document.querySelector('[data-video-toggle]');
   const playIcon = document.querySelector('[data-icon-play]');
   const pauseIcon = document.querySelector('[data-icon-pause]');
@@ -67,53 +70,40 @@
   };
 
   if (video) {
-    const startPlayback = async () => {
+    const play = async () => {
       try {
         endPoster?.classList.remove('is-visible');
         if (video.ended) video.currentTime = 0;
         await video.play();
-      } catch (_) {
-        setIcon('play');
-      }
+      } catch (_) { setIcon('play'); }
     };
-
     video.addEventListener('loadeddata', () => video.classList.add('is-ready'), { once: true });
     video.addEventListener('canplay', () => video.classList.add('is-ready'), { once: true });
     video.addEventListener('play', () => { scene?.classList.add('is-started'); setIcon('pause'); });
     video.addEventListener('pause', () => { if (!video.ended) setIcon('play'); });
     video.addEventListener('ended', () => { endPoster?.classList.add('is-visible'); setIcon('replay'); });
-    video.addEventListener('error', () => { if (errorBox) errorBox.hidden = false; if (toggle) toggle.disabled = true; });
-
-    toggle?.addEventListener('click', () => {
-      if (video.ended || video.paused) startPlayback();
-      else video.pause();
-    });
-
-    let resumeAfterHidden = false;
+    video.addEventListener('error', () => { video.style.display = 'none'; if (toggle) toggle.hidden = true; });
+    toggle?.addEventListener('click', () => { if (video.ended || video.paused) play(); else video.pause(); });
+    let resume = false;
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) { resumeAfterHidden = !video.paused; video.pause(); }
-      else if (resumeAfterHidden && !reduced.matches) { resumeAfterHidden = false; startPlayback(); }
+      if (document.hidden) { resume = !video.paused; video.pause(); }
+      else if (resume && !reduced.matches) { resume = false; play(); }
     });
-
-    if (reduced.matches) {
-      setIcon('play');
-    } else {
-      startPlayback();
-    }
+    if (reduced.matches) setIcon('play'); else play();
   }
 
-  // Live, elegant inline countdowns.
+  // Zarif tek satır geri sayımlar.
   const countdowns = [...document.querySelectorAll('[data-countdown]')];
   const renderCountdown = card => {
     const target = Date.parse(card.dataset.countdown || '');
     const eventName = card.dataset.eventName || 'Kutlama';
     const out = card.querySelector('[data-countdown-values]');
-    const title = card.querySelector('.countdown-title');
+    const label = card.querySelector('.countdown-label');
     if (!out || !Number.isFinite(target)) return;
     const diff = target - Date.now();
     if (diff <= 0) {
-      out.innerHTML = '<span>Mutluluğumuzu bizimle paylaştığınız için teşekkür ederiz.</span>';
-      if (title) title.textContent = eventName;
+      if (label) label.textContent = eventName;
+      out.textContent = 'Mutluluğumuzu bizimle paylaştığınız için teşekkür ederiz.';
       return;
     }
     const total = Math.floor(diff / 1000);
