@@ -74,3 +74,122 @@ img,video{display:block;max-width:100%}a{color:inherit;text-decoration:none}butt
 .music-control{position:fixed;z-index:80;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));min-height:44px;display:inline-flex;align-items:center;gap:8px;padding:0 13px 0 11px;border:1px solid rgba(255,255,255,.36);border-radius:999px;background:rgba(24,25,22,.42);-webkit-backdrop-filter:blur(11px);backdrop-filter:blur(11px);box-shadow:0 8px 28px rgba(20,18,14,.12);color:#FFFDF8;font-size:11px;font-weight:550;letter-spacing:.035em;cursor:pointer;transition:background .22s ease,border-color .22s ease,transform .22s ease,opacity .22s ease}.music-control:hover{transform:translateY(-1px);background:rgba(24,25,22,.54);border-color:rgba(255,255,255,.52)}.music-control:focus-visible{outline:2px solid #FFF8EA;outline-offset:3px}.music-control-icon{width:22px;height:22px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.28);border-radius:50%;font-family:var(--serif);font-size:15px;line-height:1}.music-control.is-playing .music-control-icon{animation:musicPulse 2.4s ease-in-out infinite}.music-control.is-playing{background:rgba(76,65,47,.55)}@keyframes musicPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 @media(max-width:767px){.music-control{right:max(14px,env(safe-area-inset-right));top:max(14px,env(safe-area-inset-top));min-height:42px;padding:0 11px}.music-control-label{font-size:10.5px}}
 @media(prefers-reduced-motion:reduce){.music-control.is-playing .music-control-icon{animation:none!important}}
+
+/* ===== v5: page-by-page editorial flow + compact mobile ===== */
+.scene-controls{right:22px;bottom:22px}
+.motion-button{width:auto;min-width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:0 14px;border-radius:999px}
+.video-control-label{font-size:11px;font-weight:600;letter-spacing:.025em;white-space:nowrap}
+.motion-button svg{flex:0 0 auto}
+
+.content-body{width:100%;max-width:none;margin:0;padding:0}
+.garden-intro,.family-section,.events-section,.contact-section{
+  width:100%;
+  min-height:88svh;
+  margin:0;
+  padding-inline:max(48px,calc((100vw - 1180px)/2));
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+}
+.garden-intro{background:linear-gradient(180deg,#FAF8F2 0%,#F8F4EC 100%);padding-top:96px;padding-bottom:96px}
+.family-section{background:#FFFDF8;padding-top:92px;padding-bottom:92px;border-top:1px solid rgba(123,101,70,.13);border-bottom:1px solid rgba(123,101,70,.13)}
+.family-section>h2{display:none}
+.family-section>.section-kicker{margin-bottom:34px}
+.family-grid{width:min(900px,100%)}
+.events-section{background:linear-gradient(180deg,#F3EEE4 0%,#F7F3EC 100%);padding-top:86px;padding-bottom:92px}
+.events-section::before,.events-section::after{display:none}
+.events-heading{margin-bottom:36px}
+.events-heading .section-kicker{display:none}
+.contact-section{background:#FFFDF8;padding-top:88px;padding-bottom:88px}
+.contact-section h2{margin:8px 0 34px;font-size:clamp(40px,4.3vw,56px)}
+
+.garden-intro::before,.garden-intro::after{left:max(48px,calc((100vw - 1060px)/2));right:max(48px,calc((100vw - 1060px)/2))}
+.invitation-line{max-width:820px}
+
+.event-grid{width:min(1180px,100%);margin:0 auto}
+.event{background:rgba(255,253,248,.94);box-shadow:0 20px 60px rgba(69,55,36,.055)}
+.contact-grid{width:min(850px,100%)}
+
+/* Mobile: use the screen efficiently, no artificial empty height */
+@media(max-width:767px){
+  .hero-stage{min-height:100svh}
+  .scene-controls{right:14px;bottom:15px}
+  .motion-button{min-width:44px;height:44px;padding:0 12px;gap:7px;background:rgba(24,29,24,.42)}
+  .video-control-label{font-size:10.5px}
+
+  .garden-intro,.family-section,.events-section,.contact-section{
+    min-height:0;
+    padding-inline:18px;
+  }
+  .garden-intro{padding-top:54px;padding-bottom:54px}
+  .garden-intro::before{top:22px;left:18px;right:18px}
+  .garden-intro::after{bottom:22px;left:18px;right:18px}
+  .intro-rule{margin:15px 0 17px}
+  .invitation-line{max-width:355px;font-size:clamp(25px,7.1vw,30px);line-height:1.25}
+  .intro-monogram{right:20px;bottom:27px;font-size:10px}
+
+  .family-section{padding-top:48px;padding-bottom:48px}
+  .family-section>.section-kicker{margin-bottom:18px}
+  .family-grid{grid-template-columns:1fr;max-width:390px;gap:0}
+  .family{padding:18px 4px}
+  .family:first-child{border-right:0;border-bottom:1px solid var(--line)}
+  .family-label{font-size:9px;letter-spacing:.17em}
+  .family-names{margin:7px 0 5px;font-size:30px;line-height:1.05}
+  .family-surname{font-size:10px}
+  .family-divider{display:none}
+
+  .events-section{padding-top:50px;padding-bottom:52px}
+  .events-heading{margin-bottom:22px}
+  .events-heading h2{margin-top:0;font-size:39px;line-height:1}
+  .event-grid{grid-template-columns:1fr;gap:16px}
+  .event{padding:24px 19px 20px;border-radius:10px;box-shadow:0 12px 38px rgba(69,55,36,.055)}
+  .event-header{padding-bottom:14px}
+  .event-city{font-size:8px;letter-spacing:.19em}
+  .event-header h3{font-size:38px;margin-top:3px}
+  .event-date-row{padding:17px 0 15px;gap:8px}
+  .event-date{gap:9px}
+  .event-date strong{font-size:52px}
+  .event-date>span{font-size:9px}
+  .event-date small{font-size:8px}
+  .event-meta{min-width:75px;padding-left:11px}
+  .event-meta>p:first-child{font-size:8px}
+  .event-meta>p:last-child{margin-top:6px}
+  .event-meta span{font-size:8px}
+  .event-meta strong{font-size:20px}
+  .event-place{min-height:0;padding:14px 0}
+  .event-place h4{font-size:24px;line-height:1.12}
+  .event-place p{margin-top:6px;font-size:11.5px;line-height:1.43}
+  .countdown-line{padding:12px 0}
+  .countdown-label{margin-bottom:5px;font-size:8px}
+  .countdown-line p{gap:2px 5px;font-size:8.7px;line-height:1.55}
+  .countdown-line b{font-size:16px}
+  .event-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+  .event-actions a{min-height:44px;padding:0 7px;font-size:10.5px}
+
+  .contact-section{padding-top:50px;padding-bottom:52px}
+  .contact-section h2{margin:6px auto 20px;max-width:330px;font-size:32px;line-height:1.05}
+  .contact-grid{grid-template-columns:1fr;gap:5px;max-width:390px}
+  .contact-person{grid-template-columns:31px 1fr;gap:11px;padding:13px 2px}
+  .contact-person>svg{width:17px;height:17px}
+  .contact-person small{font-size:8px}
+  .contact-person strong{font-size:22px;line-height:1.08}
+  .contact-person em{font-size:11px}
+
+  .site-footer{min-height:220px;padding:48px 18px 58px}
+  .site-footer p{font-size:35px}
+
+  .music-control{top:auto;bottom:max(14px,env(safe-area-inset-bottom));right:max(14px,env(safe-area-inset-right));min-height:42px}
+}
+
+@media(max-width:390px){
+  .garden-intro,.family-section,.events-section,.contact-section{padding-inline:15px}
+  .invitation-line{font-size:25px}
+  .family-names{font-size:28px}
+  .event{padding-left:17px;padding-right:17px}
+  .event-date strong{font-size:49px}
+  .event-meta{min-width:70px}
+  .event-actions a{font-size:10px}
+  .contact-section h2{font-size:29px}
+}

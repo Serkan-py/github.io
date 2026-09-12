@@ -60,13 +60,16 @@
   const playIcon = document.querySelector('[data-icon-play]');
   const pauseIcon = document.querySelector('[data-icon-pause]');
   const replayIcon = document.querySelector('[data-icon-replay]');
+  const videoLabel = document.querySelector('.video-control-label');
 
   const setIcon = state => {
     if (!toggle) return;
     playIcon.hidden = state !== 'play';
     pauseIcon.hidden = state !== 'pause';
     replayIcon.hidden = state !== 'replay';
-    toggle.setAttribute('aria-label', state === 'pause' ? 'Videoyu duraklat' : state === 'replay' ? 'Videoyu yeniden oynat' : 'Videoyu oynat');
+    const label = state === 'pause' ? 'Videoyu durdur' : state === 'replay' ? 'Videoyu yeniden başlat' : 'Videoyu başlat';
+    toggle.setAttribute('aria-label', label);
+    if (videoLabel) videoLabel.textContent = label;
   };
 
   if (video) {
@@ -97,8 +100,16 @@
   const music = document.querySelector('#wedding-music');
   const musicToggle = document.querySelector('[data-music-toggle]');
   const musicLabel = musicToggle?.querySelector('.music-control-label');
+  const preferredMusicSrc = music?.dataset.preferredSrc || 'audio/indila-love-story.mp3';
+  const fallbackMusicSrc = music?.dataset.fallbackSrc || 'audio/fon-muzigi.mp3';
+  let triedFallbackMusic = false;
   let musicStarted = false;
   let musicShouldResume = false;
+
+  if (music) {
+    music.src = preferredMusicSrc;
+    music.load();
+  }
 
   const setMusicUI = playing => {
     if (!musicToggle) return;
@@ -141,6 +152,12 @@
     music.addEventListener('play', () => setMusicUI(true));
     music.addEventListener('pause', () => setMusicUI(false));
     music.addEventListener('error', () => {
+      if (!triedFallbackMusic && fallbackMusicSrc) {
+        triedFallbackMusic = true;
+        music.src = fallbackMusicSrc;
+        music.load();
+        return;
+      }
       musicToggle.hidden = true;
     });
 
@@ -153,10 +170,12 @@
     // Sesli autoplay çoğu telefonda engellenir. İlk dokunma/tıklama/tuş etkileşimi
     // güvenilir kullanıcı jesti olduğu için müziği otomatik başlatır.
     const unlockMusic = async () => {
-      if (!musicStarted && music.paused) await startMusic({ fromGesture: true });
-      document.removeEventListener('pointerdown', unlockMusic, true);
-      document.removeEventListener('keydown', unlockMusic, true);
-      document.removeEventListener('touchstart', unlockMusic, true);
+      const ok = (!musicStarted && music.paused) ? await startMusic({ fromGesture: true }) : true;
+      if (ok) {
+        document.removeEventListener('pointerdown', unlockMusic, true);
+        document.removeEventListener('keydown', unlockMusic, true);
+        document.removeEventListener('touchstart', unlockMusic, true);
+      }
     };
     document.addEventListener('pointerdown', unlockMusic, { capture: true, passive: true });
     document.addEventListener('touchstart', unlockMusic, { capture: true, passive: true });

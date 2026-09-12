@@ -35,6 +35,7 @@
         </picture>
         <div class="scene-controls">
           <button type="button" class="motion-button" aria-label="Videoyu duraklat" data-video-toggle>
+            <span class="video-control-label">Videoyu durdur</span>
             <svg data-icon-play viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><polygon points="7 4 19 12 7 20 7 4"/></svg>
             <svg data-icon-pause viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="5" width="3" height="14"/><rect x="14" y="5" width="3" height="14"/></svg>
             <svg data-icon-replay viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" hidden><path d="M4 12a8 8 0 1 0 2.7-6L4 8"/><path d="M4 3v5h5"/></svg>
@@ -62,9 +63,8 @@
         <span class="intro-monogram" aria-hidden="true">E <i>&amp;</i> S</span>
       </section>
 
-      <section class="family-section reveal" aria-labelledby="family-heading">
+      <section class="family-section reveal" aria-label="Ailelerimiz">
         <p class="section-kicker">AİLELERİMİZ</p>
-        <h2 id="family-heading">Bu güzel günde birlikte</h2>
         <div class="family-grid">
           <div class="family">
             <p class="family-label">Gelin Ailesi</p>
@@ -82,7 +82,6 @@
 
       <section class="events-section reveal" aria-labelledby="events-heading">
         <div class="events-heading">
-          <p class="section-kicker">KUTLAMALARIMIZ</p>
           <h2 id="events-heading">Kına <i>&amp;</i> Düğün</h2>
         </div>
 
@@ -139,7 +138,7 @@
 
       <section class="contact-section reveal" aria-labelledby="contact-heading">
         <p class="section-kicker">İLETİŞİM</p>
-        <h2 id="contact-heading">Bize ulaşın</h2>
+        <h2 id="contact-heading">İletişime geçmek için</h2>
         <div class="contact-grid">
           <a class="contact-person" href="tel:+905462362641">
             <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.45" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92Z"/></svg>
@@ -160,9 +159,7 @@
     </footer>
   </main>
 
-  <audio id="wedding-music" preload="metadata" loop>
-    <source src="audio/fon-muzigi.mp3" type="audio/mpeg" />
-  </audio>
+  <audio id="wedding-music" preload="metadata" loop data-preferred-src="audio/indila-love-story.mp3" data-fallback-src="audio/fon-muzigi.mp3"></audio>
   <button class="music-control" type="button" data-music-toggle aria-pressed="false" aria-label="Müziği aç">
     <span class="music-control-icon" aria-hidden="true">♪</span>
     <span class="music-control-label">Müziği aç</span>

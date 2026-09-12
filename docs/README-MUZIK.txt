@@ -1,10 +1,11 @@
-EDANUR & SERKAN - Web Davetiyesi v3
+INDILA - LOVE STORY MÜZİK NOTU
 
-- İletişim sırası düzeltildi:
-  1) Hüseyin ÇAĞLAYAN - 0546 236 26 41 (Gelin Ailesi)
-  2) Burak BÜTÜN - 0530 100 24 16 (Damat Ailesi)
-- Önceki pakette saklanan fon müziği yeniden eklendi.
-- Müzik 52. saniyeden, %24 ses seviyesinde ve döngüde oynar.
-- Tarayıcı sesli otomatik oynatmayı engellerse ilk dokunma/tıklamada otomatik başlar.
-- Sağ üstte "Müziği aç / Müziği kapat" kontrolü bulunur.
-- Sekme arka plana geçince müzik durur; geri dönünce devam etmeyi dener.
+Site müzik dosyası olarak öncelikle şunu kullanacak:
+  audio/indila-love-story.mp3
+
+Telif nedeniyle şarkının kendisi bu pakete eklenmemiştir.
+Elinizde kullanma hakkına sahip olduğunuz MP3 dosyasını bu adla audio klasörüne koyun.
+
+Geçici güvenlik/fallback olarak mevcut audio/fon-muzigi.mp3 dosyası korunmuştur; Love Story dosyası yoksa site sessiz kalmak yerine mevcut fon müziğine dönebilir.
+
+Telefonlarda Safari/Chrome sesli otomatik oynatmayı engelleyebilir. Bu durumda ziyaretçinin ilk dokunuşunda müzik başlar; sağ alttaki müzik düğmesiyle ayrıca açılıp kapatılabilir.
