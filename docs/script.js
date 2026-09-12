@@ -92,6 +92,90 @@
     if (reduced.matches) setIcon('play'); else play();
   }
 
+  // Fon müziği: tarayıcıların sesli autoplay kısıtlarına uygun şekilde
+  // ilk kullanıcı etkileşiminde başlar. Düğme ile her zaman açılıp kapatılabilir.
+  const music = document.querySelector('#wedding-music');
+  const musicToggle = document.querySelector('[data-music-toggle]');
+  const musicLabel = musicToggle?.querySelector('.music-control-label');
+  let musicStarted = false;
+  let musicShouldResume = false;
+
+  const setMusicUI = playing => {
+    if (!musicToggle) return;
+    musicToggle.classList.toggle('is-playing', playing);
+    musicToggle.setAttribute('aria-pressed', playing ? 'true' : 'false');
+    musicToggle.setAttribute('aria-label', playing ? 'Müziği kapat' : 'Müziği aç');
+    if (musicLabel) musicLabel.textContent = playing ? 'Müziği kapat' : 'Müziği aç';
+  };
+
+  const startMusic = async ({ fromGesture = false } = {}) => {
+    if (!music) return false;
+    try {
+      music.volume = 0.24;
+      if (!musicStarted) {
+        // Önceki davetiye ayarındaki gibi parçanın orta bölümünden başlar.
+        const seek = () => {
+          const target = 52;
+          if (Number.isFinite(music.duration) && music.duration > target + 1) music.currentTime = target;
+        };
+        if (music.readyState >= 1) seek();
+        else music.addEventListener('loadedmetadata', seek, { once: true });
+      }
+      await music.play();
+      musicStarted = true;
+      setMusicUI(true);
+      return true;
+    } catch (_) {
+      setMusicUI(false);
+      return false;
+    }
+  };
+
+  const stopMusic = () => {
+    if (!music) return;
+    music.pause();
+    setMusicUI(false);
+  };
+
+  if (music && musicToggle) {
+    music.addEventListener('play', () => setMusicUI(true));
+    music.addEventListener('pause', () => setMusicUI(false));
+    music.addEventListener('error', () => {
+      musicToggle.hidden = true;
+    });
+
+    musicToggle.addEventListener('click', async event => {
+      event.stopPropagation();
+      if (music.paused) await startMusic({ fromGesture: true });
+      else stopMusic();
+    });
+
+    // Sesli autoplay çoğu telefonda engellenir. İlk dokunma/tıklama/tuş etkileşimi
+    // güvenilir kullanıcı jesti olduğu için müziği otomatik başlatır.
+    const unlockMusic = async () => {
+      if (!musicStarted && music.paused) await startMusic({ fromGesture: true });
+      document.removeEventListener('pointerdown', unlockMusic, true);
+      document.removeEventListener('keydown', unlockMusic, true);
+      document.removeEventListener('touchstart', unlockMusic, true);
+    };
+    document.addEventListener('pointerdown', unlockMusic, { capture: true, passive: true });
+    document.addEventListener('touchstart', unlockMusic, { capture: true, passive: true });
+    document.addEventListener('keydown', unlockMusic, true);
+
+    // Masaüstünde tarayıcı izin verirse açılışta da dene; engellenirse ilk etkileşim devralır.
+    window.setTimeout(() => startMusic(), 900);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        musicShouldResume = !music.paused;
+        if (musicShouldResume) music.pause();
+      } else if (musicShouldResume) {
+        musicShouldResume = false;
+        startMusic();
+      }
+    });
+  }
+
   // Zarif tek satır geri sayımlar.
   const countdowns = [...document.querySelectorAll('[data-countdown]')];
   const renderCountdown = card => {
