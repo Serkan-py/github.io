@@ -167,18 +167,14 @@
       else stopMusic();
     });
 
-    // Sesli autoplay çoğu telefonda engellenir. İlk dokunma/tıklama/tuş etkileşimi
-    // güvenilir kullanıcı jesti olduğu için müziği otomatik başlatır.
+    // Mobil kaydırmayı engellememek için müziği scroll başlangıcında tetiklemiyoruz.
+    // Tarayıcı sesli autoplay'i engellerse ilk gerçek tıklama veya klavye etkileşimi başlatır.
     const unlockMusic = async () => {
-      const ok = (!musicStarted && music.paused) ? await startMusic({ fromGesture: true }) : true;
-      if (ok) {
-        document.removeEventListener('pointerdown', unlockMusic, true);
-        document.removeEventListener('keydown', unlockMusic, true);
-        document.removeEventListener('touchstart', unlockMusic, true);
-      }
+      if (!musicStarted && music.paused) await startMusic({ fromGesture: true });
+      document.removeEventListener('click', unlockMusic, true);
+      document.removeEventListener('keydown', unlockMusic, true);
     };
-    document.addEventListener('pointerdown', unlockMusic, { capture: true, passive: true });
-    document.addEventListener('touchstart', unlockMusic, { capture: true, passive: true });
+    document.addEventListener('click', unlockMusic, true);
     document.addEventListener('keydown', unlockMusic, true);
 
     // Masaüstünde tarayıcı izin verirse açılışta da dene; engellenirse ilk etkileşim devralır.

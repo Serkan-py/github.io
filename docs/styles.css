@@ -193,3 +193,109 @@ img,video{display:block;max-width:100%}a{color:inherit;text-decoration:none}butt
   .event-actions a{font-size:10px}
   .contact-section h2{font-size:29px}
 }
+
+/* ===== v6: mobile readability + natural scrolling + event redesign ===== */
+html,body{overscroll-behavior-y:auto}
+body{touch-action:pan-y}
+.hero-stage,.meeting-scene,.content-body,.garden-intro,.family-section,.events-section,.contact-section{touch-action:pan-y}
+.couple-video{pointer-events:none;touch-action:pan-y}
+.motion-button,.music-control,.event-actions a,.contact-person{touch-action:manipulation}
+
+/* More readable editorial labels */
+.section-kicker{font-size:12px;letter-spacing:.27em;font-weight:700}
+.family-label{font-size:12px;font-weight:650}
+.family-names{font-size:clamp(36px,3.5vw,46px)}
+.family-surname{font-size:12px}
+.events-heading h2{font-size:clamp(54px,5.4vw,72px)}
+
+/* Events: stronger hierarchy, less empty space */
+.event{padding:38px 38px 32px;border-radius:16px;border-color:rgba(151,126,87,.24);background:linear-gradient(180deg,rgba(255,254,250,.98),rgba(253,249,242,.96));box-shadow:0 18px 54px rgba(68,53,34,.07)}
+.event::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,rgba(181,147,91,.72),rgba(181,147,91,.10));pointer-events:none}
+.event-header{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;padding-bottom:17px}
+.event-city{order:2;font-size:10px;letter-spacing:.18em;text-align:right}
+.event-header h3{order:1;margin:0;font-size:56px}
+.event-date-row{padding:20px 0 18px}
+.event-date strong{font-size:74px}
+.event-date>span{font-size:13px}
+.event-date small{font-size:10px}
+.event-meta>p:first-child{font-size:10px}
+.event-meta span{font-size:10px}
+.event-meta strong{font-size:30px}
+.event-place{min-height:0;padding:18px 0}
+.event-place h4{font-size:31px}
+.event-place p{font-size:14px;line-height:1.5;color:#5f5951}
+.countdown-line{padding:15px 0 14px}
+.countdown-label{font-size:10px}
+.countdown-line p{font-size:11px;gap:4px 8px}
+.countdown-line b{font-size:21px}
+.event-actions{margin-top:18px}
+.event-actions a{font-size:13px;padding:0 17px}
+
+/* Contact no extra sentence/title */
+.contact-section>.section-kicker{margin-bottom:28px}
+
+@media(max-width:767px){
+  html{scroll-behavior:auto}
+  .scene-controls{left:14px;right:auto;bottom:15px}
+  .motion-button{min-width:46px;height:46px;padding:0 13px;background:rgba(24,29,24,.48)}
+  .video-control-label{font-size:11px}
+
+  .section-kicker{font-size:13px;letter-spacing:.20em;line-height:1.2}
+  .garden-intro{padding-top:46px;padding-bottom:46px}
+  .invitation-line{font-size:28px;line-height:1.24}
+
+  .family-section{padding-top:42px;padding-bottom:42px}
+  .family-section>.section-kicker{margin-bottom:20px}
+  .family{padding:19px 3px 18px}
+  .family-label{font-size:11px;letter-spacing:.14em}
+  .family-names{margin:7px 0 6px;font-size:36px;line-height:1.02}
+  .family-surname{font-size:11px;letter-spacing:.21em}
+
+  .events-section{padding-top:42px;padding-bottom:44px;padding-inline:14px}
+  .events-heading{margin-bottom:20px}
+  .events-heading h2{font-size:46px;line-height:.98}
+  .event-grid{gap:18px}
+  .event{padding:22px 19px 20px;border-radius:18px;box-shadow:0 13px 34px rgba(68,53,34,.065)}
+  .event-header{align-items:center;padding-bottom:13px;gap:10px}
+  .event-header h3{font-size:43px;line-height:1}
+  .event-city{font-size:9.5px;letter-spacing:.13em;line-height:1.25;max-width:46%}
+  .event-date-row{padding:16px 0 14px;gap:10px}
+  .event-date{gap:10px;min-width:0}
+  .event-date strong{font-size:58px;line-height:.82}
+  .event-date>span{font-size:11px;letter-spacing:.11em}
+  .event-date small{font-size:9px}
+  .event-meta{min-width:92px;padding-left:12px}
+  .event-meta>p:first-child{font-size:9.5px;letter-spacing:.12em}
+  .event-meta>p:last-child{margin-top:5px;gap:5px}
+  .event-meta span{font-size:9px}
+  .event-meta strong{font-size:25px}
+  .event-place{padding:15px 0 14px}
+  .event-place h4{font-size:29px;line-height:1.08}
+  .event-place p{margin-top:7px;font-size:13.5px;line-height:1.42}
+  .countdown-line{padding:13px 0 12px}
+  .countdown-label{font-size:9.5px;margin-bottom:5px}
+  .countdown-line p{font-size:10.5px;gap:3px 6px;line-height:1.45}
+  .countdown-line b{font-size:19px}
+  .event-actions{grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}
+  .event-actions a{min-height:46px;font-size:12.5px;padding:0 8px}
+
+  .contact-section{padding-top:42px;padding-bottom:44px}
+  .contact-section>.section-kicker{margin-bottom:18px}
+  .contact-person{padding:14px 2px}
+  .contact-person small{font-size:9.5px}
+  .contact-person strong{font-size:25px;line-height:1.08}
+  .contact-person em{font-size:12.5px}
+}
+
+@media(max-width:390px){
+  .events-section{padding-inline:12px}
+  .event{padding-left:17px;padding-right:17px}
+  .event-header h3{font-size:40px}
+  .event-city{font-size:9px}
+  .event-date strong{font-size:54px}
+  .event-meta{min-width:86px;padding-left:10px}
+  .event-meta strong{font-size:23px}
+  .event-place h4{font-size:27px}
+  .event-place p{font-size:13px}
+  .family-names{font-size:34px}
+}
