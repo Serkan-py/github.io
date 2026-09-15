@@ -60,7 +60,6 @@
   const playIcon = document.querySelector('[data-icon-play]');
   const pauseIcon = document.querySelector('[data-icon-pause]');
   const replayIcon = document.querySelector('[data-icon-replay]');
-  const videoLabel = document.querySelector('.video-control-label');
 
   const setIcon = state => {
     if (!toggle) return;
@@ -69,7 +68,6 @@
     replayIcon.hidden = state !== 'replay';
     const label = state === 'pause' ? 'Videoyu durdur' : state === 'replay' ? 'Videoyu yeniden başlat' : 'Videoyu başlat';
     toggle.setAttribute('aria-label', label);
-    if (videoLabel) videoLabel.textContent = label;
   };
 
   if (video) {

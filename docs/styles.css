@@ -324,3 +324,84 @@ p,h1,h2,h3,h4,figure{margin:0}
   .section-kicker{font-size:13.5px}
   .family-names{font-size:36px}
 }
+
+/* v8 FINAL — sade hero, ikon video kontrolü, tekrar başlıksız içerik */
+.motion-button{
+  width:40px;
+  min-width:40px;
+  height:40px;
+  padding:0;
+  gap:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(18,22,19,.52);
+  box-shadow:0 5px 18px rgba(0,0,0,.16);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+}
+.motion-button:hover{background:rgba(18,22,19,.68);transform:none}
+.motion-button svg{width:17px;height:17px;stroke-width:2;display:block}
+.video-control-label{display:none!important}
+
+/* İsimler: modern editorial, dikkat çekici ama videonun önüne geçmeyen */
+.hero-copy{bottom:7.2%;width:min(92vw,980px);text-shadow:0 2px 18px rgba(7,12,8,.34)}
+.hero-copy h1{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:baseline;
+  gap:.16em;
+  font-family:var(--serif);
+  font-size:clamp(58px,5.8vw,82px);
+  font-weight:500;
+  line-height:.95;
+  letter-spacing:-.025em;
+}
+.hero-copy h1 span{white-space:nowrap}
+.hero-copy h1 i{
+  font-size:.54em;
+  font-weight:300;
+  font-style:italic;
+  color:#EED8B4;
+  letter-spacing:0;
+  transform:translateY(-.04em);
+}
+.hero-date{margin-top:13px;letter-spacing:.28em}
+
+/* Davet metni: başlık yok, yalnızca zarif metin */
+.garden-intro{padding-top:72px;padding-bottom:74px}
+.intro-rule{margin:0 0 22px}
+.invitation-line{font-size:clamp(30px,2.7vw,40px);line-height:1.35}
+
+/* Kına & Düğün üst başlığı kaldırıldığı için alanı yukarı topluyoruz */
+.events-section{padding-top:56px}
+.events-heading{display:none!important}
+
+@media(max-width:767px){
+  .scene-controls{left:12px;right:auto;bottom:13px}
+  .motion-button{width:35px;min-width:35px;height:35px;padding:0;background:rgba(18,22,19,.55)}
+  .motion-button svg{width:15px;height:15px}
+
+  .hero-copy{bottom:8.3%;width:94vw}
+  .hero-copy h1{
+    flex-direction:row;
+    align-items:baseline;
+    gap:.13em;
+    font-size:clamp(39px,10.8vw,47px);
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .hero-copy h1 i{font-size:.53em;margin:0;line-height:1}
+  .hero-date{margin-top:12px;font-size:9px;letter-spacing:.27em}
+
+  .garden-intro{padding-top:40px;padding-bottom:42px}
+  .intro-rule{margin:0 0 16px}
+  .invitation-line{max-width:330px;font-size:21px;line-height:1.38;letter-spacing:.003em}
+
+  .events-section{padding-top:30px;padding-bottom:46px}
+}
+
+@media(max-width:390px){
+  .hero-copy h1{font-size:40px}
+  .invitation-line{font-size:20.5px;max-width:315px}
+}
