@@ -1,0 +1,84 @@
+EDANUR & SERKAN — TAM VE TAŞINABİLİR DAVETİYE
+
+1. ÖNCE BİLGİSAYARINIZDA GÖRÜN
+ZIP dosyasına sağ tıklayıp "Tümünü ayıkla" ile tamamını çıkarın.
+ONIZLE.html dosyasını Chrome, Edge veya Opera ile açın.
+Üstten masaüstü veya 375 / 390 / 430 px genişliğini seçebilirsiniz.
+Doğrudan tam sayfa açmak için index.html dosyasına çift tıklayın.
+Önizleme canlı sitenizi değiştirmez. Dosyaları ZIP'in içinden açmayın.
+
+2. BAŞKA BİR YERDE YAYINLAMA
+Bu paket sade HTML / CSS / JavaScript kullanır. Node.js, npm, veritabanı,
+build, hesap anahtarı veya sunucu uygulaması gerekmez.
+GitHub Pages dahil statik HTML barındırabilen bir web sunucusuna yüklenebilir.
+
+Klasörün İÇİNDEKİLERİN tamamını hedef web klasörüne yükleyin:
+- index.html
+- styles.css
+- script.js
+- music.m4a
+- favicon.svg
+- share-card.jpg
+- fonts/ klasörü ve içeriği
+- images/ klasörü ve içeriği
+- videos/ klasörü ve içeriği
+- calendar/ klasörü ve içeriği
+
+index.html sitenin açılacağı klasörde durmalı. Dosya/klasör isimlerini ve
+büyük-küçük harflerini değiştirmeyin. Kök alanda ya da /davet/ gibi bir alt
+klasörde çalışır. Bağlantılar göreli yollar kullanır.
+ONIZLE.html ve ONCE-OKU.txt yalnızca size yöneliktir; yayınlamak şart değil.
+fonts/ içindeki lisans dosyalarını koruyun.
+
+GITHUB PAGES İÇİN
+Mevcut deponuzdaki dosyaların yedeğini alın. Sonra bu paketin site dosyalarını
+aynı dizine yükleyin. Depoda Settings > Pages bölümünde yayın kaynağı olarak
+kullandığınız dal ve klasör korunabilir. Bu görevde sizin adınıza yayın yapılmadı.
+Yeni bir depo kullanıyorsanız Pages yayın kaynağını dosyaların bulunduğu dal
+ve klasöre ayarlamanız gerekir. Gizli .github klasörü ya da Actions gerekmez.
+
+BAŞKA ALAN ADI KULLANIRKEN
+index.html içindeki canonical, og:url, og:image ve twitter:image alanlarında
+mevcut serkan-py.github.io/davet adresi var. Paylaşım kartları ve arama motoru
+bilgileri için bunları yeni TAM adresinizle değiştirin. Örnek: yeni siteniz
+https://ornek.com/davet/ ise paylaşım resmi adresi
+https://ornek.com/davet/share-card.jpg olur. Bu etiketler sayfanın çalışmasını
+veya yerel önizlemeyi engellemez; çalışma dosyalarında eski siteye bağımlılık yok.
+
+3. MÜZİK
+Mevcut sitedeki music.m4a dosyası pakete dahildir.
+Sayfa hazır olur olmaz beklemeden sesli oynatma isteği gönderilir.
+Bazı tarayıcılar sesli otomatik oynatmayı engeller. Böyle bir durumda ilk
+gerçek tıklama/dokunma ya da Enter/Boşluk etkileşimi müziği başlatmayı dener.
+Bu tarayıcı kuralını web sitesi zorla aşamaz.
+Açılıştaki düğme oynarken "Müziği kapat", dururken "Müziği aç" gösterir.
+Sayfanın sonunda ikinci müzik düğmesi yoktur.
+Kullanıcı müziği kapatırsa başka bir yere tıklamak müziği yeniden açmaz.
+Sekme arka plana geçince ses durur. Geri gelince daha önce çalıyorsa devam eder.
+Müziği değiştirmek için aynı adla music.m4a dosyasını değiştirin.
+Farklı uzantı kullanacaksanız index.html içindeki audio/source satırını da güncelleyin.
+
+4. İÇERİK GÜNCELLEME
+İsim, tarih, saat, adres, telefon ve harita bağlantıları index.html içindedir.
+Tarih/saat değişirse aynı etkinliğin time datetime ve data-countdown
+alanlarını da +03:00 ofsetini koruyarak değiştirin.
+Takvime ekleme dosyaları calendar/kina.ics ve calendar/dugun.ics içindedir;
+etkinlik saati değişirse bu dosyaları da güncelleyin.
+Tüm tarihleri, adresleri ve telefonları bu teslimde aynen koruduk.
+Görseller, videolar, müzik ve yazı tipleri bu paketin içindedir.
+Haritaları açmak için internet ve telefon bağlantıları için uygun cihaz gerekir.
+
+5. BU SON SÜRÜMDE
+- Sayfa sonundaki müzik düğmesi kaldırıldı.
+- Müzik başlangıcındaki bekleme kaldırıldı; kullanıcı kapatma tercihi korunuyor.
+- Ailelerden önceki davet metninin eksilen hizalama kuralı düzeltildi.
+- Metin alanı yatayda ortalandı; mobilde de ortalama korunuyor.
+- Önceki tek simgeli video kontrolü ve büyütülmüş mobil metinler korundu.
+- Video, adres, aile, telefon, harita, takvim ve sayaç bilgileri değiştirilmedi.
+
+KONTROLLER
+JavaScript sözdizimi, medya durumları, kullanıcı kapatma tercihinin korunması,
+sekme gizlenince durma, içerik/bağlantı/medya bütünlüğü ve paket dosyaları kontrol edildi.
+Canlı masaüstü sayfası incelendi; yeni dosyaların yerel tarayıcı görüntüsü bu
+oturumdaki erişim sınırı nedeniyle doğrulanamadı. Yerleşim düzeltmesi CSS ve
+HTML üzerinden yapıldı. ONIZLE.html ile kendi tarayıcınızda kontrol edebilirsiniz.
